@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import QuestionCard, { QuestionType } from "@/components/QuestionCard";
 import ProgressBar from "@/components/ProgressBar";
 import EmailCapture from "@/components/EmailCapture";
+import ThemeToggle from "@/components/ThemeToggle";
 import { ArrowRight, Check } from "lucide-react";
 
 const questions: QuestionType[] = [
@@ -92,7 +93,8 @@ const Index = () => {
   const progressPercentage = (answeredQuestionsCount / totalQuestions) * 100;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 bg-gradient-to-b from-gray-900 to-gray-800">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 bg-[var(--color-background)]">
+      <ThemeToggle />
       <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {!submitted ? (
           <>
@@ -105,16 +107,16 @@ const Index = () => {
                   className="flex items-center gap-2"
                 >
                   <motion.div 
-                    className="h-2.5 w-2.5 rounded-full bg-whoop-500 animate-pulse-soft"
+                    className="h-2.5 w-2.5 rounded-full bg-[var(--color-whoop-primary)] animate-pulse-soft"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.2, duration: 0.3 }}
                   />
-                  <span className="text-sm font-medium text-gray-200">Daily Check-in</span>
+                  <span className="text-sm font-medium text-[var(--color-text-secondary)]">Daily Check-in</span>
                 </motion.div>
                 
                 <motion.h1 
-                  className="text-3xl md:text-4xl font-semibold text-white tracking-tight"
+                  className="text-3xl md:text-4xl font-semibold text-[var(--color-text-primary)] tracking-tight"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.5 }}
@@ -123,7 +125,7 @@ const Index = () => {
                 </motion.h1>
                 
                 <motion.p 
-                  className="text-gray-300"
+                  className="text-[var(--color-text-secondary)]"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
@@ -158,10 +160,10 @@ const Index = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className={cn(
-                  "px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2",
+                  "px-6 py-3 rounded-[var(--radius-md)] font-medium transition-[var(--transition-base)] flex items-center justify-center gap-2",
                   allQuestionsAnswered
-                    ? "bg-whoop-500 text-white hover:bg-whoop-600" 
-                    : "bg-gray-700 text-gray-400 cursor-not-allowed"
+                    ? "bg-[var(--color-whoop-primary)] text-[var(--color-text-primary)] hover:bg-[var(--color-whoop-hover)]" 
+                    : "bg-[var(--color-background-tertiary)] text-[var(--color-text-tertiary)] cursor-not-allowed"
                 )}
                 onClick={handleSubmit}
                 disabled={!allQuestionsAnswered}
@@ -173,34 +175,34 @@ const Index = () => {
             
             <div className="lg:col-span-4 w-full sticky top-4">
               <motion.div 
-                className="bg-gray-800/50 backdrop-blur-lg border border-gray-700 p-6 flex flex-col gap-6 rounded-xl"
+                className="bg-[var(--color-background-tertiary)] backdrop-blur-lg border border-[var(--color-border-primary)] p-6 flex flex-col gap-6 rounded-[var(--radius-lg)]"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
                 <div>
-                  <h3 className="text-lg font-medium text-white mb-1">
+                  <h3 className="text-lg font-medium text-[var(--color-text-primary)] mb-1">
                     Connect Your Account
                   </h3>
-                  <p className="text-sm text-gray-300">
+                  <p className="text-sm text-[var(--color-text-secondary)]">
                     Link your responses to your Whoop profile for personalized insights.
                   </p>
                 </div>
                 
                 <EmailCapture onEmailChange={handleEmailChange} />
                 
-                <div className="text-xs text-gray-400 flex flex-col gap-2">
+                <div className="text-xs text-[var(--color-text-tertiary)] flex flex-col gap-2">
                   <div className="flex items-start gap-2">
-                    <Check size={14} className="text-green-500 mt-0.5 flex-shrink-0" />
+                    <Check size={14} className="text-[var(--color-success)] mt-0.5 flex-shrink-0" />
                     <span>Your data is securely stored and only used to improve your Whoop experience.</span>
                   </div>
                   <div className="flex items-start gap-2">
-                    <Check size={14} className="text-green-500 mt-0.5 flex-shrink-0" />
+                    <Check size={14} className="text-[var(--color-success)] mt-0.5 flex-shrink-0" />
                     <span>Responses help us tailor recommendations to your unique needs.</span>
                   </div>
                 </div>
                 
-                <div className="text-sm text-gray-300 font-medium">
+                <div className="text-sm text-[var(--color-text-secondary)] font-medium">
                   Questions Completed: {answeredQuestionsCount} of {totalQuestions}
                 </div>
               </motion.div>
@@ -208,29 +210,29 @@ const Index = () => {
           </>
         ) : (
           <motion.div 
-            className="lg:col-span-12 bg-gray-800/50 backdrop-blur-lg border border-gray-700 p-8 flex flex-col items-center justify-center text-center gap-6 rounded-xl"
+            className="lg:col-span-12 bg-[var(--color-background-tertiary)] backdrop-blur-lg border border-[var(--color-border-primary)] p-8 flex flex-col items-center justify-center text-center gap-6 rounded-[var(--radius-lg)]"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
             <motion.div 
-              className="w-16 h-16 rounded-full bg-green-900/50 flex items-center justify-center"
+              className="w-16 h-16 rounded-full bg-[var(--color-success)]/20 flex items-center justify-center"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring" }}
             >
-              <Check size={32} className="text-green-500" />
+              <Check size={32} className="text-[var(--color-success)]" />
             </motion.div>
             
             <div className="space-y-2">
-              <h2 className="text-2xl font-semibold text-white">Thank You for Your Responses!</h2>
-              <p className="text-gray-300">Your feedback helps us improve Whoop for everyone.</p>
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)]">Thank You for Your Responses!</h2>
+              <p className="text-[var(--color-text-secondary)]">Your feedback helps us improve Whoop for everyone.</p>
             </div>
             
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="mt-4 px-6 py-3 bg-whoop-500 text-white rounded-lg font-medium hover:bg-whoop-600 transition-all duration-300"
+              className="mt-4 px-6 py-3 bg-[var(--color-whoop-primary)] text-[var(--color-text-primary)] rounded-[var(--radius-md)] font-medium hover:bg-[var(--color-whoop-hover)] transition-[var(--transition-base)]"
               onClick={() => {
                 setSubmitted(false);
                 setAnswers({});

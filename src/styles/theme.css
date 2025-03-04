@@ -1,17 +1,17 @@
 :root {
   /* Base colors */
-  --color-background: #111827;  /* gray-900 */
-  --color-background-secondary: #1F2937;  /* gray-800 */
-  --color-background-tertiary: rgba(31, 41, 55, 0.5);  /* gray-800/50 */
+  --color-background: #F9FAFB;  /* gray-50 */
+  --color-background-secondary: #FFFFFF;  /* white */
+  --color-background-tertiary: rgba(255, 255, 255, 0.8);  /* white/80 */
   
   /* Text colors */
-  --color-text-primary: #FFFFFF;  /* white */
-  --color-text-secondary: #D1D5DB;  /* gray-300 */
-  --color-text-tertiary: #9CA3AF;  /* gray-400 */
+  --color-text-primary: #111827;  /* gray-900 */
+  --color-text-secondary: #4B5563;  /* gray-600 */
+  --color-text-tertiary: #6B7280;  /* gray-500 */
   
   /* Border colors */
-  --color-border-primary: #374151;  /* gray-700 */
-  --color-border-secondary: #4B5563;  /* gray-600 */
+  --color-border-primary: #E5E7EB;  /* gray-200 */
+  --color-border-secondary: #D1D5DB;  /* gray-300 */
   
   /* Brand colors */
   --color-whoop-primary: #00A3FF;  /* whoop-500 */
@@ -23,7 +23,7 @@
   --color-error: #EF4444;  /* red-500 */
   
   /* Interactive states */
-  --color-hover: rgba(255, 255, 255, 0.1);
+  --color-hover: rgba(0, 0, 0, 0.05);
   --color-focus-ring: rgba(0, 163, 255, 0.2);  /* whoop-300/20 */
   
   /* Transitions */
@@ -47,4 +47,23 @@
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
+}
+
+[data-theme="dark"] {
+  /* Base colors */
+  --color-background: #111827;  /* gray-900 */
+  --color-background-secondary: #1F2937;  /* gray-800 */
+  --color-background-tertiary: rgba(31, 41, 55, 0.5);  /* gray-800/50 */
+  
+  /* Text colors */
+  --color-text-primary: #FFFFFF;  /* white */
+  --color-text-secondary: #D1D5DB;  /* gray-300 */
+  --color-text-tertiary: #9CA3AF;  /* gray-400 */
+  
+  /* Border colors */
+  --color-border-primary: #374151;  /* gray-700 */
+  --color-border-secondary: #4B5563;  /* gray-600 */
+  
+  /* Interactive states */
+  --color-hover: rgba(255, 255, 255, 0.1);
 } 
