@@ -1,13 +1,12 @@
-
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 import QuestionCard, { QuestionType } from "@/components/QuestionCard";
 import ProgressBar from "@/components/ProgressBar";
 import EmailCapture from "@/components/EmailCapture";
 import { ArrowRight, Check } from "lucide-react";
 
-// Sample questions data
 const questions: QuestionType[] = [
   {
     type: "rating",
@@ -106,7 +105,6 @@ const Index = () => {
   
   const isNextButtonDisabled = !answers[currentQuestion.id];
   
-  // Check if current question has been answered
   const isCurrentQuestionAnswered = !!answers[currentQuestion.id];
 
   return (
@@ -114,7 +112,6 @@ const Index = () => {
       <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {!submitted ? (
           <>
-            {/* Main content area (questions) */}
             <div className="lg:col-span-8 w-full flex flex-col gap-8">
               <div className="flex flex-col gap-2">
                 <motion.div
@@ -176,7 +173,7 @@ const Index = () => {
                     Back
                   </motion.button>
                 ) : (
-                  <div></div> // Empty div to maintain layout
+                  <div></div>
                 )}
                 
                 <motion.button
@@ -197,7 +194,6 @@ const Index = () => {
               </div>
             </div>
             
-            {/* Right sidebar (email) */}
             <div className="lg:col-span-4 w-full">
               <motion.div 
                 className="glass-panel-strong p-6 flex flex-col gap-6"
@@ -230,7 +226,6 @@ const Index = () => {
             </div>
           </>
         ) : (
-          // Thank you screen after submission
           <motion.div 
             className="lg:col-span-12 glass-panel-strong p-8 flex flex-col items-center justify-center text-center gap-6"
             initial={{ opacity: 0, scale: 0.9 }}
