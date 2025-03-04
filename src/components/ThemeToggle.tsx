@@ -3,13 +3,12 @@ import { motion } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
 
   useEffect(() => {
-    // Check for saved theme preference or system preference
+    // Check for saved theme preference or default to dark
     const savedTheme = localStorage.getItem("theme") as "light" | "dark";
-    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    const initialTheme = savedTheme || systemTheme;
+    const initialTheme = savedTheme || "dark";
     
     setTheme(initialTheme);
     document.documentElement.setAttribute("data-theme", initialTheme);
