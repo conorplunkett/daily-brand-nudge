@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -11,28 +10,28 @@ import { ArrowRight, Check } from "lucide-react";
 const questions: QuestionType[] = [
   {
     type: "rating",
-    id: "recovery",
-    question: "How well-rested do you feel today?",
+    id: "ai_usefulness",
+    question: "I feel Whoop AI is useful",
     min: 1,
     max: 5,
-    minLabel: "Exhausted",
-    maxLabel: "Fully Rested"
+    minLabel: "Not Useful",
+    maxLabel: "Extremely Useful"
   },
   {
     type: "multipleChoice",
-    id: "training",
-    question: "Which factor most affected your training today?",
+    id: "feature_request",
+    question: "Which feature would you like to see next in Whoop?",
     options: [
-      { label: "Hydration", value: "hydration" },
-      { label: "Sleep", value: "sleep" },
-      { label: "Stress", value: "stress" },
-      { label: "Nutrition", value: "nutrition" }
+      { label: "DMs between friends in Whoop", value: "dms" },
+      { label: "Month end reviews", value: "reviews" },
+      { label: "Hearing level monitoring", value: "hearing" },
+      { label: "Nation wide competition", value: "competition" }
     ]
   },
   {
     type: "trueFalse",
-    id: "caffeine",
-    question: "True or False: You consumed caffeine within 3 hours of bedtime yesterday."
+    id: "discount_code",
+    question: "True or False: I bought Whoop from a friend and didn't use a discount code"
   },
   {
     type: "multipleChoice",
@@ -46,12 +45,12 @@ const questions: QuestionType[] = [
   },
   {
     type: "rating",
-    id: "insights",
-    question: "Rate how useful Whoop's Strain & Recovery insights have been for your fitness progress.",
+    id: "light_mode",
+    question: "How badly do you want light mode in Whoop?",
     min: 1,
     max: 5,
-    minLabel: "Not Useful",
-    maxLabel: "Extremely Useful"
+    minLabel: "Not Important",
+    maxLabel: "Desperately Need It"
   }
 ];
 
