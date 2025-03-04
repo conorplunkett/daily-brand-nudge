@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
@@ -55,15 +56,13 @@ const questions: QuestionType[] = [
 ];
 
 const Index = () => {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
   
-  const currentQuestion = questions[currentQuestionIndex];
   const totalQuestions = questions.length;
-  const isLastQuestion = currentQuestionIndex === totalQuestions - 1;
+  const allQuestionsAnswered = Object.keys(answers).length === totalQuestions;
   
   const handleAnswer = (questionId: string, answer: any) => {
     setAnswers((prev) => ({
@@ -72,25 +71,12 @@ const Index = () => {
     }));
   };
   
-  const handleNextQuestion = () => {
-    if (isLastQuestion) {
-      if (isEmailValid) {
-        handleSubmit();
-      } else {
-        toast.error("Please enter a valid email address");
-      }
-    } else {
-      setCurrentQuestionIndex((prev) => prev + 1);
-    }
-  };
-  
-  const handlePreviousQuestion = () => {
-    if (currentQuestionIndex > 0) {
-      setCurrentQuestionIndex((prev) => prev - 1);
-    }
-  };
-  
   const handleSubmit = () => {
+    if (!isEmailValid) {
+      toast.error("Please enter a valid email address");
+      return;
+    }
+    
     console.log("Submitted answers:", { answers, email });
     setSubmitted(true);
     toast.success("Thank you for your responses!");
@@ -103,13 +89,12 @@ const Index = () => {
     setIsEmailValid(true);
   };
   
-  const isNextButtonDisabled = !answers[currentQuestion.id];
-  
-  const isCurrentQuestionAnswered = !!answers[currentQuestion.id];
+  const answeredQuestionsCount = Object.keys(answers).length;
+  const progressPercentage = (answeredQuestionsCount / totalQuestions) * 100;
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 bg-gradient-to-b from-gray-50 to-blue-50">
-      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {!submitted ? (
           <>
             <div className="lg:col-span-8 w-full flex flex-col gap-8">
@@ -149,52 +134,45 @@ const Index = () => {
               </div>
               
               <ProgressBar 
-                currentStep={currentQuestionIndex + 1} 
+                currentStep={answeredQuestionsCount} 
                 totalSteps={totalQuestions} 
               />
               
-              <AnimatePresence mode="wait">
-                <QuestionCard
-                  key={currentQuestion.id}
-                  question={currentQuestion}
-                  onAnswer={handleAnswer}
-                  className="w-full"
-                />
-              </AnimatePresence>
-              
-              <div className="flex justify-between gap-4">
-                {currentQuestionIndex > 0 ? (
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="px-6 py-3 text-gray-600 rounded-lg hover:bg-gray-100 font-medium transition-all duration-300"
-                    onClick={handlePreviousQuestion}
+              <div className="flex flex-col gap-6">
+                {questions.map((question, index) => (
+                  <motion.div
+                    key={question.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
                   >
-                    Back
-                  </motion.button>
-                ) : (
-                  <div></div>
-                )}
-                
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={cn(
-                    "px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center gap-2",
-                    isCurrentQuestionAnswered
-                      ? "bg-whoop-500 text-white hover:bg-whoop-600" 
-                      : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                  )}
-                  onClick={handleNextQuestion}
-                  disabled={!isCurrentQuestionAnswered}
-                >
-                  {isLastQuestion ? "Submit" : "Next"}
-                  <ArrowRight size={16} />
-                </motion.button>
+                    <QuestionCard
+                      question={question}
+                      onAnswer={handleAnswer}
+                      className="w-full"
+                    />
+                  </motion.div>
+                ))}
               </div>
+              
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className={cn(
+                  "px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2",
+                  allQuestionsAnswered
+                    ? "bg-whoop-500 text-white hover:bg-whoop-600" 
+                    : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                )}
+                onClick={handleSubmit}
+                disabled={!allQuestionsAnswered}
+              >
+                Submit All Responses
+                <ArrowRight size={16} />
+              </motion.button>
             </div>
             
-            <div className="lg:col-span-4 w-full">
+            <div className="lg:col-span-4 w-full sticky top-4">
               <motion.div 
                 className="glass-panel-strong p-6 flex flex-col gap-6"
                 initial={{ opacity: 0, x: 20 }}
@@ -221,6 +199,10 @@ const Index = () => {
                     <Check size={14} className="text-green-500 mt-0.5 flex-shrink-0" />
                     <span>Responses help us tailor recommendations to your unique needs.</span>
                   </div>
+                </div>
+                
+                <div className="text-sm text-gray-700 font-medium">
+                  Questions Completed: {answeredQuestionsCount} of {totalQuestions}
                 </div>
               </motion.div>
             </div>
@@ -252,7 +234,6 @@ const Index = () => {
               className="mt-4 px-6 py-3 bg-whoop-500 text-white rounded-lg font-medium hover:bg-whoop-600 transition-all duration-300"
               onClick={() => {
                 setSubmitted(false);
-                setCurrentQuestionIndex(0);
                 setAnswers({});
               }}
             >
