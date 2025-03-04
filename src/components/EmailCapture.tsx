@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -36,7 +35,7 @@ const EmailCapture = ({ onEmailChange, className }: EmailCaptureProps) => {
   return (
     <div className={cn("flex flex-col gap-4", className)}>
       <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="text-sm font-medium text-gray-700">
+        <label htmlFor="email" className="text-sm font-medium text-gray-200">
           Your Whoop Email
         </label>
         
@@ -48,16 +47,16 @@ const EmailCapture = ({ onEmailChange, className }: EmailCaptureProps) => {
             onChange={handleEmailChange}
             placeholder="name@example.com"
             className={cn(
-              "w-full px-4 py-3 bg-white rounded-lg border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-whoop-300",
+              "w-full px-4 py-3 bg-gray-800 rounded-lg border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-whoop-300 text-white placeholder-gray-400",
               isValid 
-                ? "border-gray-200 focus:border-whoop-300" 
-                : "border-red-300 focus:border-red-500 focus:ring-red-200"
+                ? "border-gray-600 focus:border-whoop-300" 
+                : "border-red-500 focus:border-red-500 focus:ring-red-500/20"
             )}
           />
           
           {!isValid && (
             <motion.p 
-              className="absolute text-xs text-red-500 mt-1"
+              className="absolute text-xs text-red-400 mt-1"
               initial={{ opacity: 0, y: -5 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2 }}
@@ -68,7 +67,7 @@ const EmailCapture = ({ onEmailChange, className }: EmailCaptureProps) => {
         </div>
       </div>
       
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-gray-400">
         Your responses will be linked to your Whoop account for personalized insights.
       </p>
     </div>

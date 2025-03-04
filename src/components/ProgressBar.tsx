@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -17,7 +16,7 @@ const ProgressBar = ({
   const progress = (currentStep / totalSteps) * 100;
   
   return (
-    <div className={cn("w-full h-1.5 bg-gray-200/50 rounded-full overflow-hidden", className)}>
+    <div className={cn("w-full h-1.5 bg-gray-700/50 rounded-full overflow-hidden", className)}>
       <motion.div
         className="h-full bg-whoop-500 rounded-full"
         initial={{ width: 0 }}

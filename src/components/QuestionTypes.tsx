@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -30,12 +29,12 @@ export const RatingQuestion = ({
 
   return (
     <div className="flex flex-col gap-6">
-      <h3 className="text-xl font-medium text-gray-800">{question}</h3>
+      <h3 className="text-xl font-medium text-white">{question}</h3>
       
       <div className="flex flex-col gap-2">
         <div className="flex justify-between items-center gap-4 mb-1">
-          {minLabel && <span className="text-sm text-gray-500">{minLabel}</span>}
-          {maxLabel && <span className="text-sm text-gray-500">{maxLabel}</span>}
+          {minLabel && <span className="text-sm text-gray-400">{minLabel}</span>}
+          {maxLabel && <span className="text-sm text-gray-400">{maxLabel}</span>}
         </div>
         
         <div className="flex justify-between gap-3">
@@ -50,7 +49,7 @@ export const RatingQuestion = ({
                   "relative flex items-center justify-center w-10 h-10 rounded-full border text-sm font-medium transition-all duration-300",
                   isSelected 
                     ? "border-whoop-500 bg-whoop-500 text-white" 
-                    : "border-gray-200 bg-white text-gray-700 hover:border-whoop-300 hover:bg-whoop-50"
+                    : "border-gray-600 bg-gray-800 text-gray-300 hover:border-whoop-300 hover:bg-gray-700"
                 )}
                 onClick={() => handleSelect(value)}
                 whileHover={{ scale: 1.05 }}
@@ -94,7 +93,7 @@ export const MultipleChoiceQuestion = ({
 
   return (
     <div className="flex flex-col gap-6">
-      <h3 className="text-xl font-medium text-gray-800">{question}</h3>
+      <h3 className="text-xl font-medium text-white">{question}</h3>
       
       <div className="flex flex-col gap-3">
         {options.map((option, index) => {
@@ -107,8 +106,8 @@ export const MultipleChoiceQuestion = ({
               className={cn(
                 "flex items-center gap-4 p-4 rounded-lg border text-left transition-all duration-300",
                 isSelected 
-                  ? "border-whoop-500 bg-whoop-50" 
-                  : "border-gray-200 bg-white hover:border-whoop-200 hover:bg-gray-50"
+                  ? "border-whoop-500 bg-gray-700" 
+                  : "border-gray-600 bg-gray-800 hover:border-whoop-300 hover:bg-gray-700"
               )}
               onClick={() => handleSelect(option.value)}
               whileHover={{ scale: 1.01 }}
@@ -118,13 +117,13 @@ export const MultipleChoiceQuestion = ({
                 "flex items-center justify-center w-6 h-6 rounded-full text-sm font-medium",
                 isSelected 
                   ? "bg-whoop-500 text-white" 
-                  : "bg-gray-100 text-gray-600"
+                  : "bg-gray-700 text-gray-300"
               )}>
                 {letter}
               </div>
               <span className={cn(
                 "font-medium",
-                isSelected ? "text-whoop-800" : "text-gray-700"
+                isSelected ? "text-white" : "text-gray-300"
               )}>
                 {option.label}
               </span>
@@ -155,7 +154,7 @@ export const TrueFalseQuestion = ({
 
   return (
     <div className="flex flex-col gap-6">
-      <h3 className="text-xl font-medium text-gray-800">{question}</h3>
+      <h3 className="text-xl font-medium text-white">{question}</h3>
       
       <div className="flex gap-4">
         <motion.button
@@ -163,7 +162,7 @@ export const TrueFalseQuestion = ({
             "flex-1 py-4 px-6 rounded-lg border font-medium transition-all duration-300",
             selectedValue === true
               ? "border-whoop-500 bg-whoop-500 text-white" 
-              : "border-gray-200 bg-white text-gray-700 hover:border-whoop-300 hover:bg-whoop-50"
+              : "border-gray-600 bg-gray-800 text-gray-300 hover:border-whoop-300 hover:bg-gray-700"
           )}
           onClick={() => handleSelect(true)}
           whileHover={{ scale: 1.02 }}
@@ -177,7 +176,7 @@ export const TrueFalseQuestion = ({
             "flex-1 py-4 px-6 rounded-lg border font-medium transition-all duration-300",
             selectedValue === false
               ? "border-whoop-500 bg-whoop-500 text-white" 
-              : "border-gray-200 bg-white text-gray-700 hover:border-whoop-300 hover:bg-whoop-50"
+              : "border-gray-600 bg-gray-800 text-gray-300 hover:border-whoop-300 hover:bg-gray-700"
           )}
           onClick={() => handleSelect(false)}
           whileHover={{ scale: 1.02 }}

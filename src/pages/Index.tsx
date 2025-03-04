@@ -92,7 +92,7 @@ const Index = () => {
   const progressPercentage = (answeredQuestionsCount / totalQuestions) * 100;
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 bg-gradient-to-b from-gray-50 to-blue-50">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 bg-gradient-to-b from-gray-900 to-gray-800">
       <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {!submitted ? (
           <>
@@ -110,11 +110,11 @@ const Index = () => {
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.2, duration: 0.3 }}
                   />
-                  <span className="text-sm font-medium text-whoop-800">Daily Check-in</span>
+                  <span className="text-sm font-medium text-gray-200">Daily Check-in</span>
                 </motion.div>
                 
                 <motion.h1 
-                  className="text-3xl md:text-4xl font-semibold text-gray-900 tracking-tight"
+                  className="text-3xl md:text-4xl font-semibold text-white tracking-tight"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1, duration: 0.5 }}
@@ -123,7 +123,7 @@ const Index = () => {
                 </motion.h1>
                 
                 <motion.p 
-                  className="text-gray-600"
+                  className="text-gray-300"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.5 }}
@@ -161,7 +161,7 @@ const Index = () => {
                   "px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center gap-2",
                   allQuestionsAnswered
                     ? "bg-whoop-500 text-white hover:bg-whoop-600" 
-                    : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    : "bg-gray-700 text-gray-400 cursor-not-allowed"
                 )}
                 onClick={handleSubmit}
                 disabled={!allQuestionsAnswered}
@@ -173,23 +173,23 @@ const Index = () => {
             
             <div className="lg:col-span-4 w-full sticky top-4">
               <motion.div 
-                className="glass-panel-strong p-6 flex flex-col gap-6"
+                className="bg-gray-800/50 backdrop-blur-lg border border-gray-700 p-6 flex flex-col gap-6 rounded-xl"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
                 <div>
-                  <h3 className="text-lg font-medium text-gray-800 mb-1">
+                  <h3 className="text-lg font-medium text-white mb-1">
                     Connect Your Account
                   </h3>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-gray-300">
                     Link your responses to your Whoop profile for personalized insights.
                   </p>
                 </div>
                 
                 <EmailCapture onEmailChange={handleEmailChange} />
                 
-                <div className="text-xs text-gray-500 flex flex-col gap-2">
+                <div className="text-xs text-gray-400 flex flex-col gap-2">
                   <div className="flex items-start gap-2">
                     <Check size={14} className="text-green-500 mt-0.5 flex-shrink-0" />
                     <span>Your data is securely stored and only used to improve your Whoop experience.</span>
@@ -200,7 +200,7 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <div className="text-sm text-gray-700 font-medium">
+                <div className="text-sm text-gray-300 font-medium">
                   Questions Completed: {answeredQuestionsCount} of {totalQuestions}
                 </div>
               </motion.div>
@@ -208,13 +208,13 @@ const Index = () => {
           </>
         ) : (
           <motion.div 
-            className="lg:col-span-12 glass-panel-strong p-8 flex flex-col items-center justify-center text-center gap-6"
+            className="lg:col-span-12 bg-gray-800/50 backdrop-blur-lg border border-gray-700 p-8 flex flex-col items-center justify-center text-center gap-6 rounded-xl"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
             <motion.div 
-              className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center"
+              className="w-16 h-16 rounded-full bg-green-900/50 flex items-center justify-center"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring" }}
@@ -223,8 +223,8 @@ const Index = () => {
             </motion.div>
             
             <div className="space-y-2">
-              <h2 className="text-2xl font-semibold text-gray-900">Thank You for Your Responses!</h2>
-              <p className="text-gray-600">Your feedback helps us improve Whoop for everyone.</p>
+              <h2 className="text-2xl font-semibold text-white">Thank You for Your Responses!</h2>
+              <p className="text-gray-300">Your feedback helps us improve Whoop for everyone.</p>
             </div>
             
             <motion.button

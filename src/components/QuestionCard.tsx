@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { RatingQuestion, MultipleChoiceQuestion, TrueFalseQuestion } from "./QuestionTypes";
@@ -87,7 +86,7 @@ const QuestionCard = ({ question, onAnswer, className }: QuestionCardProps) => {
   return (
     <motion.div
       className={cn(
-        "glass-panel p-6 w-full",
+        "bg-gray-800/50 backdrop-blur-lg border border-gray-700 p-6 w-full rounded-xl",
         className
       )}
       initial={{ opacity: 0, y: 20 }}
