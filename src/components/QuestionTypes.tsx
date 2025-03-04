@@ -29,12 +29,12 @@ export const RatingQuestion = ({
 
   return (
     <div className="flex flex-col gap-6">
-      <h3 className="text-xl font-medium text-white">{question}</h3>
+      <h3 className="text-xl font-medium text-[var(--color-text-primary)]">{question}</h3>
       
       <div className="flex flex-col gap-2">
         <div className="flex justify-between items-center gap-4 mb-1">
-          {minLabel && <span className="text-sm text-gray-400">{minLabel}</span>}
-          {maxLabel && <span className="text-sm text-gray-400">{maxLabel}</span>}
+          {minLabel && <span className="text-sm text-[var(--color-text-tertiary)]">{minLabel}</span>}
+          {maxLabel && <span className="text-sm text-[var(--color-text-tertiary)]">{maxLabel}</span>}
         </div>
         
         <div className="flex justify-between gap-3">
@@ -46,10 +46,10 @@ export const RatingQuestion = ({
               <motion.button
                 key={value}
                 className={cn(
-                  "relative flex items-center justify-center w-10 h-10 rounded-full border text-sm font-medium transition-all duration-300",
+                  "relative flex items-center justify-center w-10 h-10 rounded-full border text-sm font-medium transition-[var(--transition-base)]",
                   isSelected 
-                    ? "border-whoop-500 bg-whoop-500 text-white" 
-                    : "border-gray-600 bg-gray-800 text-gray-300 hover:border-whoop-300 hover:bg-gray-700"
+                    ? "border-[var(--color-whoop-primary)] bg-[var(--color-whoop-primary)] text-[var(--color-text-primary)]" 
+                    : "border-[var(--color-border-secondary)] bg-[var(--color-background-secondary)] text-[var(--color-text-secondary)] hover:border-[var(--color-whoop-light)] hover:bg-[var(--color-background-tertiary)]"
                 )}
                 onClick={() => handleSelect(value)}
                 whileHover={{ scale: 1.05 }}
@@ -93,7 +93,7 @@ export const MultipleChoiceQuestion = ({
 
   return (
     <div className="flex flex-col gap-6">
-      <h3 className="text-xl font-medium text-white">{question}</h3>
+      <h3 className="text-xl font-medium text-[var(--color-text-primary)]">{question}</h3>
       
       <div className="flex flex-col gap-3">
         {options.map((option, index) => {
@@ -104,10 +104,10 @@ export const MultipleChoiceQuestion = ({
             <motion.button
               key={option.value}
               className={cn(
-                "flex items-center gap-4 p-4 rounded-lg border text-left transition-all duration-300",
+                "flex items-center gap-4 p-4 rounded-[var(--radius-md)] border text-left transition-[var(--transition-base)]",
                 isSelected 
-                  ? "border-whoop-500 bg-gray-700" 
-                  : "border-gray-600 bg-gray-800 hover:border-whoop-300 hover:bg-gray-700"
+                  ? "border-[var(--color-whoop-primary)] bg-[var(--color-background-tertiary)]" 
+                  : "border-[var(--color-border-secondary)] bg-[var(--color-background-secondary)] hover:border-[var(--color-whoop-light)] hover:bg-[var(--color-background-tertiary)]"
               )}
               onClick={() => handleSelect(option.value)}
               whileHover={{ scale: 1.01 }}
@@ -116,14 +116,14 @@ export const MultipleChoiceQuestion = ({
               <div className={cn(
                 "flex items-center justify-center w-6 h-6 rounded-full text-sm font-medium",
                 isSelected 
-                  ? "bg-whoop-500 text-white" 
-                  : "bg-gray-700 text-gray-300"
+                  ? "bg-[var(--color-whoop-primary)] text-[var(--color-text-primary)]" 
+                  : "bg-[var(--color-background-tertiary)] text-[var(--color-text-secondary)]"
               )}>
                 {letter}
               </div>
               <span className={cn(
                 "font-medium",
-                isSelected ? "text-white" : "text-gray-300"
+                isSelected ? "text-[var(--color-text-primary)]" : "text-[var(--color-text-secondary)]"
               )}>
                 {option.label}
               </span>
@@ -154,15 +154,15 @@ export const TrueFalseQuestion = ({
 
   return (
     <div className="flex flex-col gap-6">
-      <h3 className="text-xl font-medium text-white">{question}</h3>
+      <h3 className="text-xl font-medium text-[var(--color-text-primary)]">{question}</h3>
       
       <div className="flex gap-4">
         <motion.button
           className={cn(
-            "flex-1 py-4 px-6 rounded-lg border font-medium transition-all duration-300",
+            "flex-1 py-4 px-6 rounded-[var(--radius-md)] border font-medium transition-[var(--transition-base)]",
             selectedValue === true
-              ? "border-whoop-500 bg-whoop-500 text-white" 
-              : "border-gray-600 bg-gray-800 text-gray-300 hover:border-whoop-300 hover:bg-gray-700"
+              ? "border-[var(--color-whoop-primary)] bg-[var(--color-whoop-primary)] text-[var(--color-text-primary)]" 
+              : "border-[var(--color-border-secondary)] bg-[var(--color-background-secondary)] text-[var(--color-text-secondary)] hover:border-[var(--color-whoop-light)] hover:bg-[var(--color-background-tertiary)]"
           )}
           onClick={() => handleSelect(true)}
           whileHover={{ scale: 1.02 }}
@@ -173,10 +173,10 @@ export const TrueFalseQuestion = ({
         
         <motion.button
           className={cn(
-            "flex-1 py-4 px-6 rounded-lg border font-medium transition-all duration-300",
+            "flex-1 py-4 px-6 rounded-[var(--radius-md)] border font-medium transition-[var(--transition-base)]",
             selectedValue === false
-              ? "border-whoop-500 bg-whoop-500 text-white" 
-              : "border-gray-600 bg-gray-800 text-gray-300 hover:border-whoop-300 hover:bg-gray-700"
+              ? "border-[var(--color-whoop-primary)] bg-[var(--color-whoop-primary)] text-[var(--color-text-primary)]" 
+              : "border-[var(--color-border-secondary)] bg-[var(--color-background-secondary)] text-[var(--color-text-secondary)] hover:border-[var(--color-whoop-light)] hover:bg-[var(--color-background-tertiary)]"
           )}
           onClick={() => handleSelect(false)}
           whileHover={{ scale: 1.02 }}

@@ -16,9 +16,9 @@ const ProgressBar = ({
   const progress = (currentStep / totalSteps) * 100;
   
   return (
-    <div className={cn("w-full h-1.5 bg-gray-700/50 rounded-full overflow-hidden", className)}>
+    <div className={cn("w-full h-1.5 bg-[var(--color-background-tertiary)] rounded-[var(--radius-full)] overflow-hidden", className)}>
       <motion.div
-        className="h-full bg-whoop-500 rounded-full"
+        className="h-full bg-[var(--color-whoop-primary)] rounded-[var(--radius-full)]"
         initial={{ width: 0 }}
         animate={{ width: `${progress}%` }}
         transition={{ 

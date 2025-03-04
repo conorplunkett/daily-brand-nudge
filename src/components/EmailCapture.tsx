@@ -35,7 +35,7 @@ const EmailCapture = ({ onEmailChange, className }: EmailCaptureProps) => {
   return (
     <div className={cn("flex flex-col gap-4", className)}>
       <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="text-sm font-medium text-gray-200">
+        <label htmlFor="email" className="text-sm font-medium text-[var(--color-text-secondary)]">
           Your Whoop Email
         </label>
         
@@ -47,16 +47,16 @@ const EmailCapture = ({ onEmailChange, className }: EmailCaptureProps) => {
             onChange={handleEmailChange}
             placeholder="name@example.com"
             className={cn(
-              "w-full px-4 py-3 bg-gray-800 rounded-lg border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-whoop-300 text-white placeholder-gray-400",
+              "w-full px-4 py-3 bg-[var(--color-background-secondary)] rounded-[var(--radius-md)] border transition-[var(--transition-base)] focus:outline-none focus:ring-2 focus:ring-[var(--color-focus-ring)] text-[var(--color-text-primary)] placeholder-[var(--color-text-tertiary)]",
               isValid 
-                ? "border-gray-600 focus:border-whoop-300" 
-                : "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+                ? "border-[var(--color-border-secondary)] focus:border-[var(--color-whoop-light)]" 
+                : "border-[var(--color-error)] focus:border-[var(--color-error)] focus:ring-[var(--color-error)]/20"
             )}
           />
           
           {!isValid && (
             <motion.p 
-              className="absolute text-xs text-red-400 mt-1"
+              className="absolute text-xs text-[var(--color-error)] mt-1"
               initial={{ opacity: 0, y: -5 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2 }}
@@ -67,7 +67,7 @@ const EmailCapture = ({ onEmailChange, className }: EmailCaptureProps) => {
         </div>
       </div>
       
-      <p className="text-xs text-gray-400">
+      <p className="text-xs text-[var(--color-text-tertiary)]">
         Your responses will be linked to your Whoop account for personalized insights.
       </p>
     </div>

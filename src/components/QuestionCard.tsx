@@ -86,7 +86,7 @@ const QuestionCard = ({ question, onAnswer, className }: QuestionCardProps) => {
   return (
     <motion.div
       className={cn(
-        "bg-gray-800/50 backdrop-blur-lg border border-gray-700 p-6 w-full rounded-xl",
+        "bg-[var(--color-background-tertiary)] backdrop-blur-lg border border-[var(--color-border-primary)] p-6 w-full rounded-[var(--radius-lg)]",
         className
       )}
       initial={{ opacity: 0, y: 20 }}
